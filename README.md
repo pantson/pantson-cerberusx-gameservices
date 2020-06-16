@@ -46,33 +46,35 @@ Class myClass Extends App
 End
 ```
 
-# Method SignIn:Void()
+## Methods
+
+### Method SignIn:Void()
 
 Signs the current user and app into Google Play Services
 
-# Method SignOut:Void()
+### Method SignOut:Void()
 
 Signs the current user and app out of Google Play Services
 
-# Method IsSignedIn:Bool()
+### Method IsSignedIn:Bool()
 
 Return True if the ser has signed into Google Play Services, or False if not signed in
 
-# Method ShowLeaderboard:Void(leaderboard_id:String)
+### Method ShowLeaderboard:Void(leaderboard_id:String)
 
 Displays a leaderboard. leaderboard_id is the unique ID of the leader board.
 Supply a popup_message if you would like to inform the user
 
-# Method SubmitLeaderboardScore:Void(leaderboard_id:String,score:Int, popup_message:String="")
+### Method SubmitLeaderboardScore:Void(leaderboard_id:String,score:Int, popup_message:String="")
 
 Submits a score onto the leader board. 
 Supply a popup_message if you would like to inform the user
 
-# Method ShowAchievements:Void()
+### Method ShowAchievements:Void()
 
 Displays a list if all the acheivements for the app.
 
-# Method UnlockAchievement:Void(achievement_id:String, popup_message:String="")
+### Method UnlockAchievement:Void(achievement_id:String, popup_message:String="")
 
 Unlocks the achievement for this user.
 Supply a popup_message if you would like to inform the user.
