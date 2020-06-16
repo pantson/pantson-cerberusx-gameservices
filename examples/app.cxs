@@ -1,0 +1,91 @@
+Strict
+Import mojo
+
+' replace with your googleplay app id
+#GOOGLEPLAY_APP_ID="977123456789"
+Import gameservices
+
+'-----------------------------------------------------------------
+Class myClass Extends App
+	Field gms:GameService
+	
+	' replace with your test leaderbaords and acheivement on GooglePlay
+	' for this demo to work, you need one of each
+	Const leaderboard:="CgkI2dfupLgcEBIQBQ"
+	Const achievement:="CgkI2dfupLgcEBIQBg"
+		
+	Method OnCreate:Int()
+		SetUpdateRate 60
+		
+		gms = New GameService()
+
+		Return 0
+	End
+
+	Method OnUpdate:Int()
+		If MouseHit(MOUSE_LEFT)		
+			If MouseY()<200
+				' sign in/out
+				If gms.IsSignedIn()
+					gms.SignOut()
+				Else
+					gms.SignIn()
+				End
+			Else
+				If MouseY()<400
+					gms.SubmitLeaderboardScore(leaderboard,Rnd(100000),"Submitting Score")
+				Else
+					If MouseY()<600
+						gms.ShowLeaderboard(leaderboard)
+					Else
+						If MouseY()<800
+							gms.UnlockAchievement(achievement,"Submitting Achievement")
+						Else
+							If MouseY()<1000
+								gms.ShowAchievements()
+							End
+						End
+					End
+				End
+			End				 
+		End
+
+		Return 0
+	End
+
+	Method OnRender:Int()
+		Cls 0,0,0
+		
+		If gms.IsSignedIn()
+			SetColor 0,255,0
+			DrawRect 0,0,DeviceWidth(),200
+			DrawText "SIGN OUT",0,100
+			
+			SetColor 255,255,0
+			DrawRect 0,200,DeviceWidth(),200
+			DrawText "Submit random score",0,300
+	
+			SetColor 0,255,255
+			DrawRect 0,400,DeviceWidth(),200
+			DrawText "Show scores",0,500
+	
+			SetColor 255,0,255
+			DrawRect 0,600,DeviceWidth(),200
+			DrawText "Complete Achievement",0,700
+			
+			SetColor 255,255,255
+			DrawRect 0,800,DeviceWidth(),200
+			DrawText "Show Achievements",0,900
+		Else
+			SetColor 255,0,0
+			DrawRect 0,0,DeviceWidth(),200
+			DrawText "SIGN IN",0,100
+		End
+		Return 0
+	End
+End
+
+Function Main:Int()
+	New myClass
+	Return 0
+End
