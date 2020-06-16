@@ -1,0 +1,57 @@
+#rem
+######################################################################################################################################
+
+Android GameService CLASS for CerberusX
+
+######################################################################################################################################
+
+2020 Rich Hanson @richpantson
+distributed via itch.io https://richpantson.itch.io/cerberusx-gameservice-class
+comments on cerberus-x.com https://www.cerberus-x.com/community/threads/google-play-game-services-v1-0-1.475/
+
+######################################################################################################################################
+#end
+
+Strict
+
+#If TARGET="android"
+	
+	Import "native/gameservices.android.java"
+
+	#If Not GOOGLEPLAY_APP_ID
+		#Error("#GOOGLEPLAY_APP_ID not defined. Get this from the Google Play developer dashboard")
+	#End
+
+	#SRCS+=";${CD}/app/src/main/res/values/ids.xml;"
+
+'    #ANDROID_LIBRARY_REFERENCE_2+="compile 'com.google.android.gms:play-services-games:15.0.1','com.google.android.gms:play-services-auth:15.0.1'"
+    #ANDROID_LIBRARY_REFERENCE_2+="implementation 'com.google.android.gms:play-services-games:17.0.0','com.google.android.gms:play-services-auth:16.0.0'"
+
+	' if you dont want it intergrated, comment out above and uncomment below
+    '#ANDROID_LIBRARY_REFERENCE_1="compile fileTree(dir: 'libs', include: ['*.jar'])"
+    '#ANDROID_LIBRARY_REFERENCE_2="compile 'com.google.android.gms:play-services-games:15.0.1','com.google.android.gms:play-services-auth:15.0.1'"
+	
+	#ANDROID_MANIFEST_MAIN+="<uses-permission android:name=~qcom.google.android.providers.gsf.permission.READ_GSERVICES~q/>"	
+	#ANDROID_MANIFEST_APPLICATION+="<meta-data android:name=~qcom.google.android.gms.games.APP_ID~q android:value=~q@string/app_id~q />"
+	
+
+#Else
+	#Error "Google Play Game Services currently only available for android"
+#Endif
+
+Extern
+
+Class GameService Extends Null="GPgs"
+
+	Method SignIn:Void(popup:Bool = True)
+	Method SignOut:Void(popup:Bool = True)
+
+	Method IsSignedIn:Bool()
+	Method IsAvailable:Int()
+
+	Method SubmitLeaderboardScore:Void(leaderboard_id:String, score:Int,pop_message:String="")
+	Method ShowLeaderboard:Void(leaderboard_id:String)
+
+	Method UnlockAchievement:Void(id:String,pop_message:String="")
+	Method ShowAchievements:Void()
+End
