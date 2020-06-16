@@ -6,13 +6,13 @@ The gameservice module provides simple support for the Google Play Games service
 (Note: gameservice are only currently available on the android target)
 
 V1.0.1 2018-05-23
-
+V2.0.0 2020-06-14
 
 # Class gameservices.GameService
 
 V2.0.0 2020-06-14
 
-The GameService class provides simple support for the Google Play Games Service system allowing you to create online leader boards and achievements.
+The GameService class provides simple support for the Google Play Games Service system allowing you to access online leader boards and achievements.
 
 To use GameService in your game:
 
@@ -22,7 +22,7 @@ To use GameService in your game:
 
 + Add leaderboards and acheivemnts to your game service game. 
 
-+ Add your game service APP_ID as #GOOGLEPLAY_APP_ID to your code
++ Add your game service APP_ID as #GOOGLEPLAY_APP_ID in your code before importing gameservices
 
 + Import the gameservices module into your game and use the GameService class to connect to Google Play Services.
 
@@ -38,15 +38,8 @@ Import gameservices
 '-----------------------------------------------------------------
 Class myClass Extends App
 	Field gms:GameService
-	
-	' replace with your test leaderbaords and acheivement on GooglePlay
-	' remember to include your app_id in #GOOGLEPLAY_APP_ID
-	Const leaderboard:="CgkIzeqAseADEAIQAQ"
-	Const achievement:="CgkIzeqAseADEAIQAw"
-		
+
 	Method OnCreate:Int()
-		SetUpdateRate 60
-		
 		gms = New GameService()
 		Return 0
 	End
