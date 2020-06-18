@@ -63,11 +63,11 @@ Return True if the ser has signed into Google Play Services, or False if not sig
 ### Method ShowLeaderboard:Void(leaderboard_id:String)
 
 Displays a leaderboard. leaderboard_id is the unique ID of the leader board.
-Supply a popup_message if you would like to inform the user
 
 ### Method SubmitLeaderboardScore:Void(leaderboard_id:String,score:Int, popup_message:String="")
 
 Submits a score onto the leader board. 
+
 Supply a popup_message if you would like to inform the user
 
 ### Method ShowAchievements:Void()
@@ -77,4 +77,5 @@ Displays a list if all the acheivements for the app.
 ### Method UnlockAchievement:Void(achievement_id:String, popup_message:String="")
 
 Unlocks the achievement for this user.
+
 Supply a popup_message if you would like to inform the user.
